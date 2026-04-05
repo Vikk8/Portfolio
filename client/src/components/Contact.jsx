@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Send, Loader2, MapPin, Mail, Linkedin, Phone, Instagram } from "lucide-react";
 import Toast from "./Toast";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+
 const initialForm = { name: "", email: "", project: "" };
 
 export default function Contact() {
@@ -25,7 +27,7 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("https://portfolio-backend-a97d.onrender.com/api/contact", {
+      const res = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
